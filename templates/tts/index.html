@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block con %}
+<h1>변환기</h1>
+<form method="post">
+    {% csrf_token %}
+    <textarea class="form-control" placeholder="내용을 입력해 주세요" name="text">{{text}}</textarea>
+    <input name="name" placeholder="파일 이름을 입력해 주세요" value="{{name}}">
+    <select name="l">
+        <option value="ko"{% if l == 'ko' %} selected{% endif %}>한국어</option>
+        <option value="en"{% if l == 'en' %} selected{% endif %}>ENGLISH</option>
+        <option value="zh-cn"{% if l == 'zh-cn' %} selected{% endif %}>中國語</option>
+        <option value="ja"{% if l == 'ja' %} selected{% endif %}>日本語</option>
+
+    </select>
+    <button class="btn btn-dark">변환</button>
+    <a href="/media/tts/{{name}}.mp3" class="btn btn-primary" download>다운로드</a>
+</form>
+
+
+{% endblock %}
